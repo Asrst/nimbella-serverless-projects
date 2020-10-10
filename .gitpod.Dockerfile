@@ -6,7 +6,7 @@ USER gitpod
 
 RUN wget https://nimbella.io/downloads/nim/nim-install-linux.sh
 
-RUN bash nim-install-linux.sh
+RUN sudo bash nim-install-linux.sh
 
 # RUN pip3 install -r requirements.txt
 
