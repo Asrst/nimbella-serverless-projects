@@ -1,3 +1,4 @@
+
 def main(args):
       import pyqrcode
       text = args.get("text", "need generate QR code from texts ?, visit our qrcode app")
