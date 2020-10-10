@@ -1,0 +1,17 @@
+[
+  {
+    "apihost": "https://apigcp.nimbella.io",
+    "namespace": "addasait-gu1de7yfkag",
+    "packageVersions": {},
+    "actionVersions": {
+      "qr": {
+        "version": "0.0.12",
+        "digest": "db388d0291b71db9e9426947599b245fa53402df9bd760f1338ac578e3cd5969"
+      }
+    },
+    "webHashes": {
+      "web\\index.html": "a94a502e8a3877f11a377d8723a8157563d2e962dd954ada1ec7f2d19b7337ae",
+      "web\\logo.png": "302f6b60c3b73ac23df07e528d14ef740576ac5966cdd5ea4884f03d0a532a71"
+    }
+  }
+]
