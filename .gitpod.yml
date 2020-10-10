@@ -12,5 +12,4 @@ ports:
 
 # This will make it so that on workspace start it will run a file called `app.py`
 tasks:
-  - before: ./nim-install-linux.sh
-    init: pip3 install -r requirements.txt
+  - init: pip3 install -r requirements.txt
