@@ -6,4 +6,3 @@ packages:
     actions:
       - name: pyqr
         runtime: python:3
-        environment: ${<.env}

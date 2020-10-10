@@ -13,3 +13,4 @@ ports:
 # This will make it so that on workspace start it will run a file called `app.py`
 tasks:
   - init: pip3 install -r requirements.txt
+    command: find ./ -iname "*.sh" -exec chmod +x {} +
