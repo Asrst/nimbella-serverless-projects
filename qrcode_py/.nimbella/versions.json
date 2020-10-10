@@ -5,8 +5,8 @@
     "packageVersions": {},
     "actionVersions": {
       "pyqr": {
-        "version": "0.0.21",
-        "digest": "5cb9f413961d2e78c97b0e90a505747035ef3574fa5e4cfb479fa92df4e8be94"
+        "version": "0.0.26",
+        "digest": "e9855a95317037ba9a749da8282de8502ad2253eaa6da523498b519f7d5e0344"
       }
     },
     "webHashes": {
