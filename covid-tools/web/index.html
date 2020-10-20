@@ -82,10 +82,11 @@
 <div class="container">
         <div class="row ng-scope">
             <div class="col-sm-12 col-md-pull-3" id='search_results_car'>
+                <p> Click on Search Button on retrieve results (Clicking Enter wont work).</p>
                 <p> Check the facts related to covid-19. Find some examples below.</p>
-                <p> Ex1: covid-19 vaccine arrived ?</p>    
-                <p> Ex2: coronavirus can be for second time ?</p>         
-                <p> Ex3: using turmeric prevents corona ? </p>         
+                <p> Ex1: covid-19 vaccine </p>    
+                <p> Ex2: coronavirus for second time ?</p>         
+                <p> Ex3: turmeric for corona ? </p>         
                 <br>       
                 <br>         
                 <br>         
@@ -142,20 +143,34 @@
     //     doit()
     //     })
 
+    $("#query").keyup(
+        function(event) 
+        {
+        if (event.keyCode === 13)
+        {
+            console.log('clicked enter...submitting')
+            $("#submit").click(function() 
+            {
+                doit() 
+                })
+        }
+        })
 
-    $("#submit").click(function() {
-        doit()
+
+    $("#submit").click(function() 
+    {
+        doit() 
         })
 
     function doit() {
-      var txt = $("#query").val().trim();
-      var lang = $('#language_select').find(":selected").text();
+        var txt = $("#query").val().trim();
+        var lang = $('#language_select').find(":selected").text();
 
-      if (txt.length == 0) {
+        if (txt.length == 0) {
           txt = default_query
-      }
+          }
 
-      if (last != txt) {
+    
         last = txt
         let API = '/api/default/factcheck?'
         let src= API + 'query=' + escape(txt) + '&lang=' + escape(lang)
@@ -165,8 +180,12 @@
           console.log("status", status)
           var html_obj = '';
           var obj = data;
+          var results_size = Object.keys(data).length;
 
-          $.each(obj, function (k, v) {
+
+          if (results_size > 0){
+
+            $.each(obj, function (k, v) {
 
             if ( v.factual_rating.match(/true/i)) {
                 badge_color = 'success'
@@ -193,9 +212,19 @@
             html_obj += '</div> </div> </div> </section>'
             });
 
-          $("#search_results_car").html(html_obj)
+            $("#search_results_car").html(html_obj)
+            }
+            else {
+
+            html_obj += '<p> No Results Found </p>'
+            html_obj += '<br><br><br><br><br><br>'
+            html_obj += '<br><br><br><br><br><br>'
+
+            $("#search_results_car").html(html_obj)
+
+            }
         })
-      }
+
     }
   </script>
 </body>
