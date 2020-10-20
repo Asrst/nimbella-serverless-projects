@@ -2,3 +2,5 @@ pyqrcode
 pypng
 pandas
 numpy
+scikit-learn
+joblib

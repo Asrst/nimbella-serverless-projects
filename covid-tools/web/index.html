@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Covid Help Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/pages/common.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/pages/factcheck.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#" >Covid Tools</a>		
+    </nav>
+</div>
+<!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  </nav> -->
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+        <li class = 'active'><a href="index.html"><i class=" icon-check"></i><span>Fact Check</span> </a> </li>
+        <li ><a href="safetycheck.html"><i class=" icon-question-sign"></i><span>Safety Check</span> </a></li>
+        <li><a href="urcheck.html"><i class=" icon-plus-sign"></i><span>Urgency Check</span> </a> </li>
+        <li><a href="help.html"><i class=" icon-info-sign"></i><span>Help</span></a></li>
+        <li><a href="https://github.com/Asrst/serverless-apps-nimbella" target="_blank"><i class=" icon-github-sign"></i><span>Source Code</span> </a> </li>
+        <!-- <li><a href="api.html"><i class="icon-code"></i><span>API</span> </a> </li> -->
+      </ul>
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+<!-- /subnavbar -->   
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 card-margin">
+            <div class="card search-form">
+                <div class="card-body p-0">
+                    <form id="search-form">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row no-gutters">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <select class="form-control" id="language_select">
+                                            <option value="en">English</option>
+                                            <option value="hi">Hindi</option>
+                                            <option value='te'>Telugu</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                        <input type="text" placeholder="Search..." class="form-control" id="query" name="search">
+                                    </div>
+                                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                        <button type="button" class="btn-info btn-base" id="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                        </button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- <div id=output>You searched for:</div> -->
+<div class = 'row'></div>
+
+<div style="margin:auto" id="myresult">
+
+
+<div class="container">
+        <div class="row ng-scope">
+            <div class="col-sm-12 col-md-pull-3" id='search_results_car'>
+                <p class="search-results-count">About (0.39 sec.)</p>            
+
+            </div>
+        </div>
+        </div>
+<br>
+<br>
+<div class="footer">
+    <div class="footer-inner">
+        <div class='container'>
+            <div class="row" style="text-align:center">
+                <div class="span12 style="text-align:center""> &copy; 2020 <a href="#">COVID TOOLS - India</a></div>
+                <!-- /span12 --> 
+            </div>
+            <!-- /row --> 
+        </div>
+        <!-- /container --> 
+    </div>
+    <!-- /footer-inner --> 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- <script> 
+         $("button").click(function() { 
+                var x = $("#search-form").serializeArray(); 
+                var y = $('#language_select').find(":selected").text();
+                var z = $('#query').val();
+
+                $.each(x, function(i, field) { 
+                    $("#output").append(field.name + ":" 
+                            + field.value + " "); 
+                console.log(x, y, z)
+                }); 
+            });
+</script> -->
+<script type="text/javascript">
+    
+    var default_query = 'coronavirus'
+    var default_lang = 'en'
+    var last = undefined
+
+    $(function() {
+        $("#query").val(default_query)
+        $("#language_select").val(default_lang)
+        doit()
+        })
+
+
+    $("#submit").click(function() {
+        doit()
+        })
+
+    function doit() {
+      var txt = $("#query").val().trim();
+      var lang = $('#language_select').find(":selected").text();
+
+      if (txt.length == 0) {
+          txt = default_query
+      }
+
+      if (last != txt) {
+        last = txt
+        let API = '/api/default/factcheck?'
+        let src= API + 'query=' + escape(txt) + '&lang=' + escape(lang)
+        console.log("sending", src)
+
+        $.get(src, function(data, status) {
+          console.log("status", status)
+          var html_obj = '';
+          var obj = data;
+
+          $.each(obj, function (k, v) {
+
+            if ( v.factual_rating.match(/true/i)) {
+                badge_color = 'success'
+                }
+            else if ( v.factual_rating.match(/false/i)) {
+                badge_color = 'danger'
+                }
+            else {
+                badge_color = 'warning'
+                }
+            
+            html_obj += '<section class="search-result-item">'
+            html_obj += '<div class="search-result-item-body">'
+            html_obj += '<div class="row"> <div class="col-sm-9">'
+            html_obj += '<h7>Claim by ' +  v.claim_by + '</h7>'
+            html_obj += '<h6 class="search-result-item-heading">' + v.claim_text + '</h6>'
+            html_obj += '<br><h7><b>Learn More</b></h7>'
+            html_obj += '<h6><a href="' + v.review_url + '">' + v.review_title + '</a></h6>'
+            html_obj += '<p class="info">' + v.review_date + '</p> </div>'
+            html_obj += '<div class="col-sm-3 text-align-center">'
+            html_obj += '<h7>' + v.review_site +  ' fact-rating </h7>'
+            html_obj += '<h6><span class="badge badge-' + badge_color
+            html_obj += ' pull-left text-wrap">' + v.factual_rating + '</span></h6>'
+            html_obj += '</div> </div> </div> </section>'
+            });
+
+          $("#search_results_car").html(html_obj)
+        })
+      }
+    }
+  </script>
+</body>
+</html>

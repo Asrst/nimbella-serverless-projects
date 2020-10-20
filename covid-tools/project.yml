@@ -1,0 +1,11 @@
+bucket:
+  strip: 1
+
+packages:
+  - name: default
+    actions:
+      - name: factcheck
+        runtime: python:3
+        environment: $(GOOGLE_FACTCHECK_API_KEY)
+      - name: urcheck
+        runtime: python:3ai

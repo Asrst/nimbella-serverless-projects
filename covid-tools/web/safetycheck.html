@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Covid Help Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/pages/common.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div>
+				<nav class="navbar">
+            <a class="navbar-brand" href="#" >Covid Tools</a>		
+          </nav>
+	</div>
+<!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  </nav> -->
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+        <li><a href="index.html"><i class=" icon-check"></i><span>Fact Check</span> </a> </li>
+        <li class="active"><a href="safetycheck.html"><i class=" icon-question-sign"></i><span>Safety Check</span> </a></li>
+        <li><a href="urcheck.html"><i class=" icon-plus-sign"></i><span>Urgency Check</span> </a> </li>
+        <li><a href="help.html"><i class=" icon-info-sign"></i><span>Help</span> </a> </li>
+        <li><a href="https://github.com/Asrst/serverless-apps-nimbella" target="_blank"><i class=" icon-github-sign"></i><span>Source Code</span> </a> </li>
+        <!-- <li><a href="api.html"><i class="icon-code"></i><span>API</span> </a> </li> -->
+      </ul>
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+<!-- /subnavbar -->        
+
+<!-- <a class="btn btn-large btn-success" id="fire">Send Email</a>
+<center><input type="button" value="Show Safety Check Widget" onclick="call_safety_div()"style="padding:5px"></center> -->
+
+<div onclick="call_safety_div()" id="call_safety_map_dv" style="position:fixed; bottom: 100px; right: 15px; z-index: 9999; cursor:pointer; border: 2px solid green;padding: 5px;border-radius: 50%;"><img src="https://maps.mapmyindia.com/covid19/corona/ic_safety_check.png" style="width:30px"></div>
+<div id="safety_div" style="display:none"></div>
+
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> &copy; 2020 <a href="#">COVID TOOLS - India</a>. </div>
+        <!-- /span12 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<!-- /footer --> 
+<!-- Le javascript
+================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/88hm16q5fq1beivdeaevazaropm9in72/map_load?v=1.5&plugins=coronaLayers&callback=call_safety_div"></script>
+<script type="text/javascript">
+
+$('#fire').on('click', function (e) {
+  
+  //your awesome code here
+
+})
+            
+  function call_safety_div()
+  {
+      new MapmyIndia.showSafetyCheck({parentDivId:"safety_div",geolocation:true,shareOptions:false,details:'medium'});
+  }   
+  </script>
+<script src="js/base.js"></script> 
+</body>
+</html>
