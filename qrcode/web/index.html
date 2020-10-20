@@ -46,7 +46,7 @@
         var txt = $("#mytext").val().trim()
         if (last != txt) {
           last = txt
-          let API = '/api/default/qr'
+          let API = '/api/default/pyqr'
           let src= API + '?text=' + escape(txt)
           console.log("sending", src)
           $.get(src, function(data, status) {
